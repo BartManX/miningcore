@@ -67,6 +67,8 @@
       "enabled": true,
       "coin": "monero",
       "randomXRealm": "xmr1",
+	  "randomXVmCount": 2,
+	  "randomXFlagsAdd": "RANDOMX_FLAG_FULL_MEM",
       "address": "43g9avHw8WYHnq749LU1Nw1BZ8FCwS2B7GLoW4vif7cPjJB7e9f6WgU8ptDFM7kyNS9kz1zy334dAYFKgP2KJU8vMoZ3hYD",
       "rewardRecipients": [
         {

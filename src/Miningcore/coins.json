@@ -36,6 +36,64 @@
         "explorerTxLink": "https://explorer.fiveg.cash/tx/{0}",
         "explorerAccountLink": "https://explorer.fiveg.cash/address/{0}"
     },
+        "griffion": {
+        "name": "Griffion",
+        "symbol": "GRIFF",
+        "family": "progpow",
+        "website": "https://griffion.org/",
+        "market": "https://coinmarketcap.com/currencies/griffion/",
+        "twitter": "https://twitter.com/Ravencoin",
+        "telegram": "https://t.me/RavencoinDev",
+        "discord": "https://discordapp.com/invite/jn6uhur",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "sha256d"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [
+                {
+                    "hash": "sha256d"
+                }
+            ]
+        },
+        "shareMultiplier": 1,
+        "progpower": "kawpow",
+        "explorerBlockLink": "https://explorer.griffion.org/block/$hash$",
+        "explorerTxLink": "https://explorer.griffion.org/tx/{0}",
+        "explorerAccountLink": "https://explorer.griffion.org/address/{0}"
+    },
+    "sugarchain": {
+        "name": "Sugarchain",
+        "canonicalName": "SugarChain",
+        "symbol": "SUGAR",
+        "family": "bitcoin",
+        "website": "https://sugarchain.org/",
+        "twitter": "https://twitter.com/sugarchain_dev",
+        "market": "https://coinpaprika.com/coin/sugar-sugarchain",
+        "telegram": "https://t.me/sugarchain",
+        "discord": "",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "yespowersugar"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [
+                {
+                    "hash": "sha256d"
+                }
+            ]
+        },
+        "shareMultiplier": 65536,
+        "explorerBlockLink": "https://sugarchain.org/explorer/#/block/$hash$",
+        "explorerTxLink": "https://sugarchain.org/explorer/#/transaction/{0}",
+        "explorerAccountLink": "https://sugarchain.org/explorer/#/address/{0}"
+    },
     "anonpay": {
         "name": "AnonPay",
         "symbol": "ANP",
@@ -991,6 +1049,47 @@
         "explorerBlockLink": "https://chainz.cryptoid.info/dgb/block.dws?$height$.htm",
         "explorerTxLink": "https://chainz.cryptoid.info/dgb/tx.dws?{0}.htm",
         "explorerAccountLink": "https://chainz.cryptoid.info/dgb/address.dws?{0}.htm"
+    },
+    "aegisum": {
+        "name": "Aegisum",
+        "canonicalName": "Aegisum",
+        "symbol": "AEGS",
+        "family": "bitcoin",
+        "website": "https://aegisum.com/",
+        "market": "https://tradeogre.com/exchange/AEGS-USDT",
+        "twitter": "https://x.com/Aegisum",
+        "telegram": "https://t.me/Aegisum",
+        "discord": "https://discord.com/invite/4E5caDKkeP",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "scrypt",
+            "args": [1024, 1]
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [
+                {
+                    "hash": "sha256d"
+                }
+            ]
+        },
+        "posBlockHasher": {
+            "hash": "reverse",
+            "args": [
+                {
+                    "hash": "scrypt",
+                    "args": [1024, 1]
+                }
+            ]
+        },
+        "hasMWEB": true,
+        "shareMultiplier": 65536,
+        "coinbaseMinConfimations": 21,
+        "explorerBlockLink": "https://aegisum.com/explorer/block/$height$",
+        "explorerTxLink": "https://aegisum.com/explorer/tx/{0}",
+        "explorerAccountLink": "https://aegisum.com/explorer/address/{0}"
     },
     "dogecoin": {
         "name": "Dogecoin",
@@ -5920,6 +6019,32 @@
         "subAddressPrefixStagenet": 36,
         "explorerBlockLink": "https://www.exploremonero.com/block/$height$",
         "explorerTxLink": "https://www.exploremonero.com/transaction/{0}"
+    },
+    "bonero": {
+        "name": "Bonero",
+        "canonicalName": "Bonero",
+        "symbol": "SEXT",
+        "family": "cryptonote",
+        "website": "https://bonero.top/",
+        "market": "https://coinmarketcap.com/currencies/bonero",
+        "twitter": "https://x.com/boneroproject",
+        "telegram": "",
+        "discord": "",
+        "hash": "randomx",
+        "hashVariant": 0,
+        "blobType": 0,
+        "smallestUnit": 1000000000000,
+        "addressPrefix": 0x6e16,
+        "addressPrefixStagenet": 24,
+        "addressPrefixTestnet": 53,
+        "addressPrefixIntegrated": 0x9bfc9,
+        "addressPrefixIntegratedStagenet": 25,
+        "addressPrefixIntegratedTestnet": 54,
+        "subAddressPrefix": 0x58d6,
+        "subAddressPrefixTestnet": 63,
+        "subAddressPrefixStagenet": 36,
+        "explorerBlockLink": "https://explore.bonero.top/block/$height$",
+        "explorerTxLink": "https://explore.bonero.top/tx/{0}"
     },
     "morelo": {
         "name": "Morelo",
