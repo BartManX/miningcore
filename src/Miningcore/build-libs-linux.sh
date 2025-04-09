@@ -1,6 +1,7 @@
 #!/bin/bash
 
 OutDir=$1
+chmod +x ../Native/check_cpu.sh
 
 AES=$(../Native/check_cpu.sh aes && echo -maes || echo)
 SSE2=$(../Native/check_cpu.sh sse2 && echo -msse2 || echo)

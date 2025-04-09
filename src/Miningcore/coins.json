@@ -94,6 +94,35 @@
         "explorerTxLink": "https://sugarchain.org/explorer/#/transaction/{0}",
         "explorerAccountLink": "https://sugarchain.org/explorer/#/address/{0}"
     },
+	    "adventurecoin": {
+        "name": "AdventureCoin",
+        "canonicalName": "AdventureCoin",
+        "symbol": "ADVC",
+        "family": "bitcoin",
+        "website": "https://www.adventurecoin.quest/",
+        "twitter": "https://twitter.com/sugarchain_dev",
+        "market": "https://coinpaprika.com/coin/sugar-sugarchain",
+        "telegram": "https://t.me/sugarchain",
+        "discord": "",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "yespoweradventure"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [
+                {
+                    "hash": "sha256d"
+                }
+            ]
+        },
+        "shareMultiplier": 65536,
+        "explorerBlockLink": "https://sugarchain.org/explorer/#/block/$hash$",
+        "explorerTxLink": "https://sugarchain.org/explorer/#/transaction/{0}",
+        "explorerAccountLink": "https://sugarchain.org/explorer/#/address/{0}"
+    },
     "anonpay": {
         "name": "AnonPay",
         "symbol": "ANP",
