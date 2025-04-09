@@ -82,9 +82,9 @@ private async Task OnBlockFoundNotificationAsync(BlockFoundNotification notifica
 
     var timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " UTC";
 
-    // Optional: link to block explorer if available
+    // Include block number first
     string blockLink = !string.IsNullOrEmpty(coin.ExplorerBlockLink)
-        ? $"<a href='{string.Format(coin.ExplorerBlockLink, notification.BlockHeight)}' target='_blank'>View Block</a>"
+        ? $"<a href='{string.Format(coin.ExplorerBlockLink, notification.BlockHeight)}' target='_blank'>View Block #{notification.BlockHeight}</a>"
         : $"Block #{notification.BlockHeight}";
 
     var message = $@"
