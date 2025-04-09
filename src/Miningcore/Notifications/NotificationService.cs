@@ -57,19 +57,38 @@ public class NotificationService : BackgroundService
             await Guard(()=> pushoverClient.PushMessage(notification.Subject, notification.Message, PushoverMessagePriority.None, ct), LogGuarded);
     }
 
-    private async Task OnBlockFoundNotificationAsync(BlockFoundNotification notification, CancellationToken ct)
+private async Task OnBlockFoundNotificationAsync(BlockFoundNotification notification, CancellationToken ct)
+{
+    var pool = poolConfigs[notification.PoolId];
+    var coin = pool.Template;
+
+    var subject = $"Pool: {coin.Name} - Block Found Notification";
+
+    var timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " UTC";
+
+    // Optional: link to block explorer if available
+    string blockLink = !string.IsNullOrEmpty(coin.ExplorerBlockLink)
+        ? $"<a href='{string.Format(coin.ExplorerBlockLink, notification.BlockHeight)}' target='_blank'>View Block</a>"
+        : $"Block #{notification.BlockHeight}";
+
+    var message = $@"
+        <h2>🎉 New Block Found!</h2>
+        <p><strong>Time:</strong> {timestamp}</p>
+        <p><strong>Coin:</strong> {coin.Name} ({coin.Symbol})</p>
+        <p><strong>Pool ID:</strong> {notification.PoolId}</p>
+        <p><strong>Block Height:</strong> {blockLink}</p>
+        <p>The pool has found a new block candidate. Miners, keep those hashrates up! 💪</p>
+    ";
+
+    if(clusterConfig.Notifications?.Admin?.NotifyBlockFound == true)
     {
-        const string subject = "Pool: {poolConfigs[poolId].Template.Name} - Block Notification";
-        var message = $"Pool {notification.PoolId} found block candidate {notification.BlockHeight}";
+        await Guard(() => SendEmailAsync(adminEmail, subject, message, ct), LogGuarded);
 
-        if(clusterConfig.Notifications?.Admin?.NotifyBlockFound == true)
-        {
-            await Guard(() => SendEmailAsync(adminEmail, subject, message, ct), LogGuarded);
-
-            if(clusterConfig.Notifications?.Pushover?.Enabled == true)
-                await Guard(() => pushoverClient.PushMessage(subject, message, PushoverMessagePriority.None, ct), LogGuarded);
-        }
+        if(clusterConfig.Notifications?.Pushover?.Enabled == true)
+            await Guard(() => pushoverClient.PushMessage(subject, $"Pool {notification.PoolId} found block candidate {notification.BlockHeight}", PushoverMessagePriority.None, ct), LogGuarded);
     }
+}
+
 
     private async Task OnPaymentNotificationAsync(PaymentNotification notification, CancellationToken ct)
     {
