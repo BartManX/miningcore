@@ -48,14 +48,30 @@ public class NotificationService : BackgroundService
         return $"{amount:0.#####} {poolConfigs[poolId].Template.Symbol}";
     }
 
-    private async Task OnAdminNotificationAsync(AdminNotification notification, CancellationToken ct)
-    {
-        if(!string.IsNullOrEmpty(adminEmail))
-            await Guard(()=> SendEmailAsync(adminEmail, notification.Subject, notification.Message, ct), LogGuarded);
+private async Task OnAdminNotificationAsync(AdminNotification notification, CancellationToken ct)
+{
+    var timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss 'UTC'");
+    
+    var htmlBody = $@"
+        <html>
+            <body style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>
+                <h2 style='color: #2c3e50;'>Admin Notification</h2>
+                <p><strong>Time:</strong> {timestamp}</p>
+                <p><strong>Subject:</strong> {notification.Subject}</p>
+                <hr />
+                <p>{notification.Message}</p>
+                <hr />
+                <p style='font-size: 12px; color: #999;'>This message was automatically sent by the Miningcore notification system.</p>
+            </body>
+        </html>";
 
-        if(clusterConfig.Notifications?.Pushover?.Enabled == true)
-            await Guard(()=> pushoverClient.PushMessage(notification.Subject, notification.Message, PushoverMessagePriority.None, ct), LogGuarded);
-    }
+    if(!string.IsNullOrEmpty(adminEmail))
+        await Guard(() => SendEmailAsync(adminEmail, notification.Subject, htmlBody, ct), LogGuarded);
+
+    if(clusterConfig.Notifications?.Pushover?.Enabled == true)
+        await Guard(() => pushoverClient.PushMessage(notification.Subject, notification.Message, PushoverMessagePriority.None, ct), LogGuarded);
+}
+
 
 private async Task OnBlockFoundNotificationAsync(BlockFoundNotification notification, CancellationToken ct)
 {
