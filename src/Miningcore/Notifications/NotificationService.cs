@@ -90,41 +90,70 @@ private async Task OnBlockFoundNotificationAsync(BlockFoundNotification notifica
 }
 
 
-    private async Task OnPaymentNotificationAsync(PaymentNotification notification, CancellationToken ct)
+private async Task OnPaymentNotificationAsync(PaymentNotification notification, CancellationToken ct)
+{
+    var now = DateTime.UtcNow;
+    var coin = poolConfigs[notification.PoolId].Template;
+
+    if(string.IsNullOrEmpty(notification.Error))
     {
-        if(string.IsNullOrEmpty(notification.Error))
+        // prepare tx links
+        var txLinks = Array.Empty<string>();
+
+        if(!string.IsNullOrEmpty(coin.ExplorerTxLink))
+            txLinks = notification.TxIds.Select(txHash => string.Format(coin.ExplorerTxLink, txHash)).ToArray();
+
+        var explorerLinks = txLinks.Length > 0
+            ? string.Join("<br>", txLinks.Select(x => $"<a href=\"{x}\" target=\"_blank\">{x}</a>"))
+            : "N/A";
+
+        const string subject = "Payout Success Notification";
+
+        var message = $@"
+            <html>
+                <body style=""font-family: sans-serif;"">
+                    <h2 style=""color: #4CAF50;"">✅ Payout Success</h2>
+                    <p><strong>Time (UTC):</strong> {now}</p>
+                    <p><strong>Pool:</strong> {notification.PoolId}</p>
+                    <p><strong>Coin:</strong> {coin.Name} ({coin.Symbol})</p>
+                    <p><strong>Total Paid:</strong> {FormatAmount(notification.Amount, notification.PoolId)}</p>
+                    <p><strong>Recipients:</strong> {notification.RecipientsCount}</p>
+                    <p><strong>Transaction(s):</strong><br>{explorerLinks}</p>
+                </body>
+            </html>";
+
+        if(clusterConfig.Notifications?.Admin?.NotifyPaymentSuccess == true)
         {
-            var coin = poolConfigs[notification.PoolId].Template;
-
-            // prepare tx links
-            var txLinks = Array.Empty<string>();
-
-            if(!string.IsNullOrEmpty(coin.ExplorerTxLink))
-                txLinks = notification.TxIds.Select(txHash => string.Format(coin.ExplorerTxLink, txHash)).ToArray();
-
-            const string subject = "Payout Success Notification";
-            var message = $"Paid {FormatAmount(notification.Amount, notification.PoolId)} from pool {notification.PoolId} to {notification.RecipientsCount} recipients in transaction(s) {(string.Join(", ", txLinks))}";
-
-            if(clusterConfig.Notifications?.Admin?.NotifyPaymentSuccess == true)
-            {
-                await Guard(() => SendEmailAsync(adminEmail, subject, message, ct), LogGuarded);
-
-                if(clusterConfig.Notifications?.Pushover?.Enabled == true)
-                    await Guard(() => pushoverClient.PushMessage(subject, message, PushoverMessagePriority.None, ct), LogGuarded);
-            }
-        }
-
-        else
-        {
-            const string subject = "Payout Failure Notification";
-            var message = $"Failed to pay out {notification.Amount} {poolConfigs[notification.PoolId].Template.Symbol} from pool {notification.PoolId}: {notification.Error}";
-
-            await Guard(()=> SendEmailAsync(adminEmail, subject, message, ct), LogGuarded);
+            await Guard(() => SendEmailAsync(adminEmail, subject, message, ct), LogGuarded);
 
             if(clusterConfig.Notifications?.Pushover?.Enabled == true)
-                await Guard(()=> pushoverClient.PushMessage(subject, message, PushoverMessagePriority.None, ct), LogGuarded);
+                await Guard(() => pushoverClient.PushMessage(subject, $"Paid {FormatAmount(notification.Amount, notification.PoolId)} from pool {notification.PoolId}", PushoverMessagePriority.None, ct), LogGuarded);
         }
     }
+
+    else
+    {
+        var symbol = poolConfigs[notification.PoolId].Template.Symbol;
+        const string subject = "Payout Failure Notification";
+
+        var message = $@"
+            <html>
+                <body style=""font-family: sans-serif;"">
+                    <h2 style=""color: #f44336;"">❌ Payout Failed</h2>
+                    <p><strong>Time (UTC):</strong> {now}</p>
+                    <p><strong>Pool:</strong> {notification.PoolId}</p>
+                    <p><strong>Amount:</strong> {notification.Amount} {symbol}</p>
+                    <p><strong>Error:</strong> {notification.Error}</p>
+                </body>
+            </html>";
+
+        await Guard(() => SendEmailAsync(adminEmail, subject, message, ct), LogGuarded);
+
+        if(clusterConfig.Notifications?.Pushover?.Enabled == true)
+            await Guard(() => pushoverClient.PushMessage(subject, message, PushoverMessagePriority.None, ct), LogGuarded);
+    }
+}
+
 
     public async Task SendEmailAsync(string recipient, string subject, string body, CancellationToken ct)
     {
