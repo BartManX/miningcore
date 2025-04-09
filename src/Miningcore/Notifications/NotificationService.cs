@@ -59,7 +59,7 @@ public class NotificationService : BackgroundService
 
     private async Task OnBlockFoundNotificationAsync(BlockFoundNotification notification, CancellationToken ct)
     {
-        const string subject = "Block Notification";
+        const string subject = "Pool: {poolConfigs[poolId].Template.Name} - Block Notification";
         var message = $"Pool {notification.PoolId} found block candidate {notification.BlockHeight}";
 
         if(clusterConfig.Notifications?.Admin?.NotifyBlockFound == true)
