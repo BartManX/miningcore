@@ -36,7 +36,7 @@
         "explorerTxLink": "https://explorer.fiveg.cash/tx/{0}",
         "explorerAccountLink": "https://explorer.fiveg.cash/address/{0}"
     },
-        "griffion": {
+    "griffion": {
         "name": "Griffion",
         "symbol": "GRIFF",
         "family": "progpow",
@@ -59,11 +59,40 @@
                 }
             ]
         },
-        "shareMultiplier": 1,
+	    "shareMultiplier": 1,
         "progpower": "kawpow",
         "explorerBlockLink": "https://explorer.griffion.org/block/$hash$",
         "explorerTxLink": "https://explorer.griffion.org/tx/{0}",
         "explorerAccountLink": "https://explorer.griffion.org/address/{0}"
+    },
+    "gemma": {
+        "name": "Gemma",
+        "symbol": "GEMS",
+        "family": "progpow",
+        "website": "https://gemmacoin.io/",
+        "market": "https://coinmarketcap.com/currencies/gemma/",
+        "twitter": "https://x.com/gemma_coin",
+        "telegram": "",
+        "discord": "https://discord.com/invite/hpbMxBTDAb",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "sha256d"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [
+                {
+                    "hash": "sha256d"
+                }
+            ]
+        },
+	    "shareMultiplier": 1,
+        "progpower": "kawpow",
+        "explorerBlockLink": "https://explorer.gemmacoin.io/block/$hash$",
+        "explorerTxLink": "https://explorer.gemmacoin.io/tx/{0}",
+        "explorerAccountLink": "https://explorer.gemmacoin.io/address/{0}"
     },
     "sugarchain": {
         "name": "Sugarchain",
@@ -94,12 +123,12 @@
         "explorerTxLink": "https://sugarchain.org/explorer/#/transaction/{0}",
         "explorerAccountLink": "https://sugarchain.org/explorer/#/address/{0}"
     },
-	    "adventurecoin": {
-        "name": "AdventureCoin",
+    "adventurecoin": {
+        "name": "Adventurecoin",
         "canonicalName": "AdventureCoin",
         "symbol": "ADVC",
         "family": "bitcoin",
-        "website": "https://www.adventurecoin.quest/",
+        "website": "https://sugarchain.org/",
         "twitter": "https://twitter.com/sugarchain_dev",
         "market": "https://coinpaprika.com/coin/sugar-sugarchain",
         "telegram": "https://t.me/sugarchain",
@@ -3853,6 +3882,32 @@
         "explorerTxLink": "https://chainz.cryptoid.info/smartie/tx.dws?{0}.htm",
         "explorerAccountLink": "https://chainz.cryptoid.info/smartie/address.dws?{0}.htm"
     },
+    "swampcoin": {
+        "name": "SwampCoin",
+        "canonicalName": "SwampCoin",
+        "symbol": "SWAMP",
+        "family": "bitcoin",
+        "website": "https://swampcoin.club/",
+        "market": "https://www.coingecko.com/en/coins/swamp-coin",
+        "twitter": "https://twitter.com/SwampCoin",
+        "telegram": "https://t.me/swampcoincommunity",
+        "discord": "",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "yespower"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "yespower" } ]
+        },
+        "hasMasterNodes": true,
+        "shareMultiplier": 65536,
+        "explorerBlockLink": "https://chainz.cryptoid.info/smartie/block.dws?$height$.htm",
+        "explorerTxLink": "http://explorer.swampcoin.tech/tx/{0}",
+        "explorerAccountLink": "http://explorer.swampcoin.tech/address/{0}"
+    },
     "smileycoin-sha256": {
         "name": "Smileycoin Sha256",
         "canonicalName": "Smileycoin",
@@ -3916,7 +3971,7 @@
             "scrypt"
         ],
         "shareMultiplier": 65536,
-        "explorerBlockLink": "https://chainz.cryptoid.info/smly/block.dws?$height$.htm",
+        "explorerBlockLink": "http://explorer.swampcoin.tech/block/$height$",
         "explorerTxLink": "https://chainz.cryptoid.info/smly/tx.dws?{0}.htm",
         "explorerAccountLink": "https://chainz.cryptoid.info/smly/address.dws?{0}.htm"
     },
