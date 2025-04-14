@@ -124,20 +124,20 @@
         "explorerAccountLink": "https://sugarchain.org/explorer/#/address/{0}"
     },
     "adventurecoin": {
-        "name": "Adventurecoin",
+        "name": "AdventureCoin",
         "canonicalName": "AdventureCoin",
         "symbol": "ADVC",
         "family": "bitcoin",
-        "website": "https://sugarchain.org/",
-        "twitter": "https://twitter.com/sugarchain_dev",
-        "market": "https://coinpaprika.com/coin/sugar-sugarchain",
-        "telegram": "https://t.me/sugarchain",
+        "website": "https://www.adventurecoin.quest/",
+        "twitter": "",
+        "market": "",
+        "telegram": "",
         "discord": "",
         "coinbaseHasher": {
             "hash": "sha256d"
         },
         "headerHasher": {
-            "hash": "yespoweradventure"
+            "hash": "yespowersugar"
         },
         "blockHasher": {
             "hash": "reverse",
@@ -148,9 +148,9 @@
             ]
         },
         "shareMultiplier": 65536,
-        "explorerBlockLink": "https://sugarchain.org/explorer/#/block/$hash$",
-        "explorerTxLink": "https://sugarchain.org/explorer/#/transaction/{0}",
-        "explorerAccountLink": "https://sugarchain.org/explorer/#/address/{0}"
+        "explorerBlockLink": "https://explorer.adventurecoin.quest/explorer/#/block/$hash$",
+        "explorerTxLink": "https://explorer.adventurecoin.quest/#/transaction/{0}",
+        "explorerAccountLink": "https://explorer.adventurecoin.quest/#/address/{0}"
     },
     "anonpay": {
         "name": "AnonPay",
@@ -804,6 +804,70 @@
         "explorerTxLink": "https://blocks.butcoin.tech/tx/{0}",
         "explorerAccountLink": "https://blocks.butcoin.tech/address/{0}"
     },
+    "butkoin-yespower": {
+        "name": "ButKoin YesPower",
+        "canonicalName": "ButKoin",
+        "symbol": "BUTK",
+        "family": "bitcoin",
+        "website": "https://butcoin.tech/",
+        "market": "",
+        "twitter": "https://twitter.com/ButKoin",
+        "telegram": "",
+        "discord": "https://discord.com/invite/j7T82mKkrw",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "yespower"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "sha256d" } ]
+        },
+        "posBlockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "yespower" } ]
+                
+        },
+        "shareMultiplier": 65536,
+        "hasFounderFee": true,
+        "hasMasterNodes": true,
+        "explorerBlockLink": "https://blocks.butcoin.tech/block/$hash$",
+        "explorerTxLink": "https://blocks.butcoin.tech/tx/{0}",
+        "explorerAccountLink": "https://blocks.butcoin.tech/address/{0}"
+    },
+    "butkoin-ghost": {
+        "name": "ButKoin Ghostrider",
+        "canonicalName": "ButKoin",
+        "symbol": "BUTK",
+        "family": "bitcoin",
+        "website": "https://butcoin.tech/",
+        "market": "",
+        "twitter": "https://twitter.com/ButKoin",
+        "telegram": "",
+        "discord": "https://discord.com/invite/j7T82mKkrw",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "ghostrider"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "sha256d" } ]
+        },
+        "posBlockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "ghostrider" } ]
+                
+        },
+        "shareMultiplier": 65536,
+        "hasFounderFee": true,
+        "hasMasterNodes": true,
+        "explorerBlockLink": "https://blocks.butcoin.tech/block/$hash$",
+        "explorerTxLink": "https://blocks.butcoin.tech/tx/{0}",
+        "explorerAccountLink": "https://blocks.butcoin.tech/address/{0}"
+    },
     "cannabiscoin": {
         "name": "Cannabiscoin",
         "canonicalName": "Cannabiscoin",
@@ -1268,6 +1332,33 @@
         "explorerBlockLink": "https://enigscan.com/block/$height$",
         "explorerTxLink": "https://enigscan.com/tx/{0}",
         "explorerAccountLink": "https://enigscan.com/address/{0}"
+    },
+    "menelik": {
+        "name": "Menelikcoin",
+        "symbol": "MENEL",
+        "family": "bitcoin",
+        "website": "https://menelik.fun/",
+        "github": "https://github.com/MenelikCoin/menelik",
+        "market": "",
+        "twitter": "https://x.com/menelikcoin",
+        "discord": "https://discord.com/invite/ndgAJSu2nQ",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "ghostrider"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "sha256d" } ]
+        },
+        "hasFounderFee": true,
+        "hasMasterNodes": true,
+        "hasSmartNodes": true,
+        "shareMultiplier": 65536,
+        "explorerBlockLink": "https://explorer.menelik.fun/block/$height$",
+        "explorerTxLink": "https://explorer.menelik.fun/tx/{0}",
+        "explorerAccountLink": "https://explorer.menelik.fun/address/{0}"
     },
     "emrals": {
         "name": "Emrals",
@@ -3881,6 +3972,32 @@
         "explorerBlockLink": "https://chainz.cryptoid.info/smartie/block.dws?$height$.htm",
         "explorerTxLink": "https://chainz.cryptoid.info/smartie/tx.dws?{0}.htm",
         "explorerAccountLink": "https://chainz.cryptoid.info/smartie/address.dws?{0}.htm"
+    },
+    "whive": {
+        "name": "Whive",
+        "canonicalName": "Whive",
+        "symbol": "WHIVE",
+        "family": "bitcoin",
+        "website": "https://www.whive.io/",
+        "market": "",
+        "twitter": "",
+        "telegram": "",
+        "discord": "",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "yespower"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "yespower" } ]
+        },
+        "hasMasterNodes": true,
+        "shareMultiplier": 65536,
+        "explorerBlockLink": "https://whiveexplorer.cointest.com/$height$",
+        "explorerTxLink": "https://whiveexplorer.cointest.com/tx/{0}",
+        "explorerAccountLink": "https://whiveexplorer.cointest.com/address/{0}"
     },
     "swampcoin": {
         "name": "SwampCoin",
