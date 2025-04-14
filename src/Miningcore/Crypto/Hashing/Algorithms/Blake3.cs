@@ -4,11 +4,11 @@ using Miningcore.Native;
 namespace Miningcore.Crypto.Hashing.Algorithms;
 
 [Identifier("blake3")]
-public unsafe class Blake3 : IHashAlgorithm
+public unsafe class Blake3IHash : IHashAlgorithm
 {
     public byte[] dataKey { get; protected set; } = null;
     
-    public Blake3(byte[] dataKey = null)
+    public Blake3IHash(byte[] dataKey = null)
     {
         this.dataKey = dataKey;
     }

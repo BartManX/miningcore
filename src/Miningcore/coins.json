@@ -6975,5 +6975,35 @@
         "explorerBlockLink": "https://explorer.crionic.org/block/$height$",
         "explorerTxLink": "https://explorer.crionic.org/tx/{0}",
         "explorerAccountLink": "https://explorer.crionic.org/address/{0}"
+    },
+     "rincoin": {
+         "name": "Rincoin",
+         "canonicalName": "Rincoin",
+         "symbol": "RIN",
+         "family": "bitcoin",
+         "website": "https://coin.rin.so/",
+         "market": "",
+         "twitter": "",
+         "telegram": "",
+         "discord": "https://discord.gg/Ap7TUXYRBf",
+         "coinbaseHasher": {
+             "hash": "sha256d"
+         },
+         "headerHasher": {
+             "hash": "rinhash"
+         },
+         "blockHasher": {
+             "hash": "reverse",
+             "args": [
+                 {
+                     "hash": "rinhash"
+                 }
+             ]
+         },
+         "hasMWEB": true,
+         "diff1": "0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+         "explorerBlockLink": "https://rin-explorer.coin-miners.info/block/$hash$",
+         "explorerTxLink": "https://rin-explorer.coin-miners.info/tx/{0}",
+         "explorerAccountLink": "https://rin-explorer.coin-miners.info/address/{0}"
     }
 }

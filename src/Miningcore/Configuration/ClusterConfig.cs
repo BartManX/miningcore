@@ -206,6 +206,9 @@ public partial class BitcoinTemplate : CoinTemplate
     public JObject HeaderHasher { get; set; }
     public JObject BlockHasher { get; set; }
 
+    [JsonProperty("diff1")]
+     public string Diff1 { get; set; }
+ 
     [JsonProperty("posBlockHasher")]
     public JObject PoSBlockHasher { get; set; }
 

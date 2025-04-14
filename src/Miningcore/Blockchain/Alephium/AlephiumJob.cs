@@ -33,7 +33,7 @@ public class AlephiumJob
 
     private AlephiumJobParams jobParams;
     private readonly ConcurrentDictionary<string, bool> submissions = new(StringComparer.OrdinalIgnoreCase);
-    private static readonly IHashAlgorithm hasher = new Blake3();
+    private static readonly IHashAlgorithm hasher = new Blake3IHash();
     
     private static byte[] GetBigEndianUInt32(uint value)
     {
