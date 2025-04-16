@@ -1215,16 +1215,17 @@ void yespowerSUGAR_hash(const char* input, char* output, uint32_t len)
     yespower_tls(input, 80, &yespower_1_0_sugarchain, (yespower_binary_t *)output);
 }
 
-void yespowerADVENTURE_hash(const char* input, char* output, uint32_t len)
+void power2bADVC_hash(const char* input, char* output, uint32_t len)
 {
-    yespower_params_t yespower_1_0_adventure = {
-        .version = YESPOWER_1_0,
-        .N = 2048,
-        .r = 32,
-        .pers = (const uint8_t *)"Satoshi Nakamoto 31/Oct/2008 Proof-of-work is essentially one-CPU-one-vote",
-        .perslen = 74
-    };
-    yespower_tls(input, 80, &yespower_1_0_adventure, (yespower_binary_t *)output);
+    	yespower_params_t yespower_b2b_power2badvc = 
+	{
+		.version = YESPOWER_1_0,
+		.N = 2048,
+		.r = 32,
+		.pers = "Let the quest begin",
+		.perslen = 46 
+    	};
+    	yespower_b2b_tls( input, len, &yespower_b2b_power2badvc, (yespower_binary_t *)output);
 }
 
 void yespowerURX_hash(const char* input, char* output, uint32_t len)

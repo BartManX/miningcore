@@ -244,8 +244,8 @@ public static unsafe class Multihash
     [DllImport("libmultihash", EntryPoint = "yespowerSUGAR_export", CallingConvention = CallingConvention.Cdecl)]
     public static extern void yespowerSUGAR(byte* input, void* output, uint inputLength);
     
-	[DllImport("libmultihash", EntryPoint = "yespowerADVENTURE_export", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void yespowerADVENTURE(byte* input, void* output, uint inputLength);
+	[DllImport("libmultihash", EntryPoint = "power2bADVC_export", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void power2bADVC(byte* input, void* output, uint inputLength);
         
     [DllImport("libmultihash", EntryPoint = "yespowerTIDE_export", CallingConvention = CallingConvention.Cdecl)]
     public static extern void yespowerTIDE(byte* input, void* output, uint inputLength);

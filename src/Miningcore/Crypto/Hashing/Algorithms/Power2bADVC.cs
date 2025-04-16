@@ -3,8 +3,8 @@ using Miningcore.Native;
 
 namespace Miningcore.Crypto.Hashing.Algorithms;
 
-[Identifier("yespoweradventure")]
-public unsafe class YespowerADVENTURE : IHashAlgorithm
+[Identifier("power2badvc")]
+public unsafe class Power2bADVC : IHashAlgorithm
 {
     public void Digest(ReadOnlySpan<byte> data, Span<byte> result, params object[] extra)
     {
@@ -14,7 +14,7 @@ public unsafe class YespowerADVENTURE : IHashAlgorithm
         {
             fixed (byte* output = result)
             {
-                Multihash.yespowerADVENTURE(input, output, (uint) data.Length);
+                Multihash.power2bADVC(input, output, (uint) data.Length);
             }
         }
     }

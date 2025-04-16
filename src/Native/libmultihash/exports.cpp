@@ -467,9 +467,9 @@ extern "C" MODULE_API void yespowerSUGAR_export(const char *input, char *output,
     yespowerSUGAR_hash(input, output, input_len);
 }
 
-extern "C" MODULE_API void yespowerADVENTURE_export(const char *input, char *output, uint32_t input_len)
+extern "C" MODULE_API void power2bADVC_export(const char *input, char *output, uint32_t input_len)
 {
-    yespowerADVENTURE_hash(input, output, input_len);
+    power2bADVC_hash(input, output, input_len);
 }
 
 extern "C" MODULE_API void yespowerR16_export(const char *input, char *output, uint32_t input_len)
