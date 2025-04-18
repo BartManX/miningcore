@@ -71,31 +71,30 @@ public class PoolApiController : ApiControllerBase
                 var lastBlockTime = await cf.Run(con => blocksRepo.GetLastPoolBlockTimeAsync(con, config.Id));
                 result.LastPoolBlockTime = lastBlockTime;
 
-                if(lastBlockTime.HasValue)
-                {
-                    var startTime = lastBlockTime.Value;
-                    var poolEffort = await cf.Run(con => shareRepo.GetEffortBetweenCreatedAsync(con, config.Id, startTime, clock.Now));
-
-                    //kaspa effort fix start here
-                    // If the effort is less than 1e-8, multiply it by 4e9
-                    if(poolEffort.HasValue && poolEffort.Value < 1e-8)
-                    {
-                        poolEffort *= 4e9;
-                    }
-                    //kaspa effort fix end here
-
-// Additional failsafe to catch bad effort values
-if(poolEffort.HasValue)
+if (lastBlockTime.HasValue)
 {
-    var effort = poolEffort.Value;
+    var startTime = lastBlockTime.Value;
+    var poolEffort = await cf.Run(con => shareRepo.GetEffortBetweenCreatedAsync(con, config.Id, startTime, clock.Now));
 
-    // Prevent invalid values
-    if(double.IsNaN(effort) || double.IsInfinity(effort) || effort < 0)
-        effort = 0;
+    // kaspa effort fix start here
+    // If the effort is null or less than 1e-8, multiply it by 4e9
+    if (!poolEffort.HasValue || poolEffort.Value < 1e-8)
+    {
+        poolEffort = poolEffort.HasValue ? poolEffort.Value * 4e9 : 0;  // Use a default value of 0 if null
+    }
+    // kaspa effort fix end here
 
-    result.PoolEffort = effort;
+    // If poolEffort is still invalid or has an unexpected value (e.g., negative or too high), set it to a safe default
+    if (poolEffort.HasValue && (poolEffort.Value < 0 || poolEffort.Value > 1e12))  // Example threshold (adjust as needed)
+    {
+        poolEffort = 0;  // Or some other logical default value
+    }
+
+    if (poolEffort.HasValue)
+        result.PoolEffort = poolEffort.Value;
+    else
+        result.PoolEffort = 0;  // Ensure this is set to a fallback value
 }
-                }
 
                 var from = clock.Now.AddHours(-topMinersRange);
 
