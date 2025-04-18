@@ -84,8 +84,17 @@ public class PoolApiController : ApiControllerBase
                     }
                     //kaspa effort fix end here
 
-                    if(poolEffort.HasValue)
-                        result.PoolEffort = poolEffort.Value;
+// Additional failsafe to catch bad effort values
+if(poolEffort.HasValue)
+{
+    var effort = poolEffort.Value;
+
+    // Prevent invalid values
+    if(double.IsNaN(effort) || double.IsInfinity(effort) || effort < 0)
+        effort = 0;
+
+    result.PoolEffort = effort;
+}
                 }
 
                 var from = clock.Now.AddHours(-topMinersRange);
